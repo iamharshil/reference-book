@@ -5,4 +5,4 @@
 // more info about string operator
 
 // prompt for file structure
-I want to create an quick notes or quick template for reference before interview so can you suggest me file structure of it and should make md files or make .ts or .js files for it
+// I want to create an quick notes or quick template for reference before interview so can you suggest me file structure of it and should make md files or make .ts or .js files for it
