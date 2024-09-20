@@ -179,11 +179,10 @@ const bigInt = BigInt(1234567890123456789012345678901234567890n);
 // It's better to declare object using const.
 const car = new Object();
 
-//  Javascript object has properties and methods
+//  Object has properties and methods
 // properties
 car.name = "Ford";
 car.model = 500;
-car.weight = 850;
 
 // methods
 car.start = function () {
@@ -191,12 +190,6 @@ car.start = function () {
 };
 car.drive = function () {
   return "Car driving";
-};
-car.break = function () {
-  return "Car stopped";
-};
-car.stop = function () {
-  return "Car stopped";
 };
 
 car["name"]; // or
@@ -206,20 +199,16 @@ car.color = "red"; // add new property
 
 delete car.color; // or
 delete car["color"]; // delete property
-
 delete car; // delete object
 
 // Nested object
 const car = {
   name: "Ford",
-  model: 500,
-  weight: 850,
   color: {
     exterior: "red",
     interior: "black",
   },
 };
-
 car.color.exterior; // red
 
 car.drive(); // accessing/invoking object method
