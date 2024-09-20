@@ -1,3 +1,4 @@
 {
-  "words": ["Eich"]
+  "ignoreWords": ["substr"],
+  "words": ["Eich", "concat", "typeof", "instanceof"]
 }
