@@ -163,6 +163,52 @@ const number = 10;
 const number2 = 10.1; // supports decimal numbers
 const number3 = 123e5; // 12300000
 const number4 = 123e-5; // 0.00123
+
+isNaN(number); // false: check if value is NaN
+typeof NaN; // number: NaN is a number
+let x = 2 / 0; // Infinity
+let y = -2 / 0; // -Infinity
+typeof Infinity; // number: Infinity is a number
+
+number.toString(); // "10": convert number to string (base 10)
+number.toString(2); // "1010": convert number to string (base 2)
+number.toString(8); // "12": convert number to string (base 8)
+number.toString(16); // "a": convert number to string (base 16)
+number.toString(32); // "a": convert number to string (base 32)
+
+const number = new Number(10); // typeof object, use when need to use number as an object
+new Number(10) === new Number(10); // false: object comparison
+
+Number.isInteger(10); // true: check if number is integer
+Number.IsSafeInteger(10); // true: check if number is safe integer
+
+number.toString(); // "10": convert number to string
+
+number.toExponential(); // "1e+1": convert number to exponential notation
+number.toExponential(4); // "1.0000e+1": convert number to exponential notation with 4 decimal places
+
+number.toFixed(2); // "10.00": convert number to fixed-point notation with 2 decimal places
+
+number.toPrecision(); // "10": convert number to precision notation
+
+const number = 8.656;
+number.toPrecision(); // "8.656": convert number to precision notation
+number.toPrecision(2); // "8.7": convert number to precision notation with 2 significant digits
+
+number.valueOf(); // 10: return primitive value of number
+
+// Convert variables to numbers
+Number("10"); // 10
+Number(true); // 1
+Number("John"); // NaN
+Number(new Date("2021-01-01")); // 1609459200000
+parseInt("10"); // 10
+parseInt("10 years"); // 10
+parseInt("years 10"); // NaN
+parseInt("10.5"); // 10
+parseFloat("10.5"); // 10.5
+parseFloat("10.5 years"); // 10.5
+parseFloat("years 10.5"); // NaN
 ```
 
 ### Boolean
@@ -199,6 +245,11 @@ const sym = Symbol("Hello");
 ```javascript
 const bigInt = 1234567890123456789012345678901234567890n;
 const bigInt = BigInt(1234567890123456789012345678901234567890n);
+
+// BigInt is not a number
+// BigInt cannot have decimal points
+// BigInt cannot be used with Math object
+5n / 2; // Error: Cannot mix BigInt and other types, use explicit conversions
 ```
 
 ### Object
