@@ -98,8 +98,12 @@ function () {
 ```javascript
 const str = "Hello World!";
 
+// string as an object
+const str = new String("Hello World!"); // typeof object
+
 str.length; // 12: get length of string
-str.chatAt(0); // H: get character at index 0
+str.at(-1); // !: get character at index -1 (allow negative index)
+str.chatAt(0); // H: get character at index 0 (does not allow negative index)
 str.charCodeAt(0); // 72: get unicode of character at index 0
 str.toUpperCase(); // HELLO WORLD!: convert to uppercase
 str.toLowerCase(); // hello world!: convert to lowercase
@@ -107,6 +111,45 @@ str.slice(0, 5); // Hello: (startIndex, endIndex)
 str.substring(-2); // Hello: converts negative index to 0
 str.substr(0, 5); // Hello: start index and length
 str.concat(" ", "World!"); // Hello World!: join two strings
+str.trim(); // Hello World!: remove whitespace from both ends
+str.trimStart(); // Hello World!: remove whitespace from start
+str.trimEnd(); // Hello World!: remove whitespace from end
+str.padStart(20, "*"); // ********Hello World!: add padding at start
+str.padEnd(20, "*"); // Hello World!********: add padding at end
+str.repeat(2); // Hello World!Hello World!: repeat string
+str.replace("World", "Universe"); // Hello Universe!: replace string // replaces only first occurrence // case-sensitive
+str.replace(/World/g, "Universe"); // Hello Universe!: replace all occurrences // case-sensitive
+str.replaceAll("World", "Universe"); // Hello Universe!: replace all occurrences // case-sensitive
+str.split(" "); // ["Hello", "World!"]: split string into array
+
+str.includes("World"); // true: check if string contains substring
+str.includes("World", 7); // start search from index 7
+
+str.startsWith("Hello"); // true: check if string starts with substring
+str.startsWith("Hello", 0); // start search from index 0
+
+str.endsWith("World!"); // true: check if string ends with substring
+str.endsWith("World!", 12); // start search from index 12
+
+// string search methods
+str.indexOf("World"); // 6: get index of first occurrence // -1 if not found
+str.lastIndexOf("World"); // 6: get index of last occurrence // -1 if not found
+str.indexOf("World", 7); // start search from index 7
+str.lastIndexOf("World", 7); // start search from index 7
+str.search("World"); // 6: get index of first occurrence, accept regex // does not accept second argument
+str.search(/World/i); // 6: case-insensitive search
+str.match("World"); // ["World"]: get matched string array with a
+str.match(/World/g); // ["World"]: get all matched strings in an array
+str.match(/World/gi); // ["World"]: case-insensitive search
+str.matchAll(/World/gi); // iterator object with all matched strings
+
+const str = "Test, Test, Test";
+str.match(/Test/g); // ["Test", "Test", "Test"]
+
+const matchAllStr = str.matchAll(/Test/g);
+for (const match of matchAllStr) {
+  console.log(match); // ["Test", index: 0, input: "Test, Test, Test", groups: undefined]
+}
 ```
 
 ### Number
