@@ -1,4 +1,4 @@
 {
   "ignoreWords": ["substr", "concat", "typeof", "instanceof", "unshift"],
-  "words": ["Eich"]
+  "words": ["Eich", "Hege", "Nilsen"]
 }

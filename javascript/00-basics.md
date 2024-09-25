@@ -3,12 +3,29 @@
 ## Table of Contents
 
 - [Origin](#origin)
+- [Important And Conventions](#important-and-conventions)
 - [Dom Manipulation](#dom-manipulation)
 - [Display Content in JavaScript](#display-content-in-javascript)
 - [Variables](#variables)
 - [Hoisting](#hoisting)
 - [Data Types](#data-types)
 - [Operators](#operators)
+- [Conditional Statements](#conditional-statements)
+- [Switch Statement](#switch-statement)
+- [Loops](#loops)
+- [Object vs Map](#object-vs-map)
+- [Regex](#regex)
+- [Errors](#errors)
+- [Scope](#scope)
+- [Use Strict](#use-strict)
+- [This Keyword](#this-keyword)
+- [Arrow Function](#arrow-function)
+- [Class](#class)
+- [Modules](#modules)
+- [JSON](#json)
+- [Debugging](#debugging)
+- [Best Practice](#best-practice)
+- [Improve Performance](#improve-javascript-performance)
 
 ## Origin
 
@@ -21,6 +38,9 @@
 
 ## Important and Conventions
 
+- Operator procedure goes from * / + - (same as traditional math)
+- Any operation with parentheses will computed fist `(10 + 50) * 3` 180
+- Operators with same precedence (/ and *) computed left to right `100 / 50 * 3` 6
 - Comparing two objects always return false.
 
 ```javascript
@@ -965,3 +985,231 @@ Object.groupBy() vs Map.groupBy()
 
 - Object.groupBy() groups elements into a javascript object.
 - Map.groupBy() groups elements into a javascript map.
+
+## Regex
+
+```javascript
+let text = "Hello, World";
+text.search(/world/i); // case-insensitive
+
+// search
+// test
+let pattern = /e/
+pattern.test("Hello, World!") // true
+
+const obj = /e/.exec("Hello, World!");
+obj[0]; // [ 'e', index: 1, input: 'Hello, World!', groups: undefined ]
+```
+
+## Errors
+
+- `try` - defines code block to run
+- `catch` - defines code block to handle any error.
+- `finally` - statements defines a code block to run regardless of the result.
+- `throw` - statements defines a custom error.
+
+- Errors can be coding errors made by programmer, errors due to wrong input, and other unforeseeable things.
+
+### Error object
+
+- Javascript has built in error object that provides error information when an error occurs.
+- The error object provides two useful properties: name and message.
+
+### Error Name values
+
+1. EvalError - An error has occurred in the eval() function
+2. RangeError - A number `out of range` has occurred.
+3. ReferenceError - An illegal reference has occurred.
+4. SyntaxError - A syntax error has occurred.
+5. TypeError - A type error has occurred.
+6. URLError - An error in encodeURI() has occurred.
+
+## Scope
+
+1. Block Scope - variable inside any block has block scope i.e. `try block` or `catch block`
+2. Function Scope - variable inside any function has that function scope. Variable inside function are local to the function. Local variable has function scope.
+3. Global Scope - Any variable defined without any scope in file has global scope.
+
+## Use Strict
+
+- Using strict more will throw error on undefined object call or hoisted variable declaration.
+- Declaring variable before initializing will cause error.
+- Using object without declaring it, is not allowed.
+- Deleting variable (or object) is not allowed.
+- Deleting function is not allowed.
+- Duplicate(same named params) is not allowed in same scope.
+- Octal numeric literal not allowed. `let x = 010`
+
+- Writing to a read-only property is now allowed.
+
+```javascript
+const obj = {};
+Object.defineProperty(obj, x, { value: 0, writable: false })
+obj.x = 3.14; // this will cause error.
+```
+
+- Using pre-defined names as variable name will throw error.
+
+```javascript
+"use strict";
+let eval = 3.14; // this will cause error.
+```
+
+## This Keyword
+
+- Alone `this` refers to global object.
+- In object method, `this` refers to the object.
+- In function, `this` refers to global object.
+- In strict mode function `this` is undefined.
+- In event `this` refers to element that received the event.
+- Methods like `call()`, `apply()` and `bind()` can refer `this` to any object.
+
+```javascript
+const person1 = {
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+const person2 = {
+  firstName: "John",
+  lastName: "Doe"
+}
+
+// calls fullName from person1 using person2 argument.
+person1.fullName.call(person2); // John Doe
+
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  fullName: function() {
+    return this.firstName + " " + this.lastName;
+  }
+}
+
+const member = {
+  firstName: "Hege",
+  lastName: "Nilsen"
+}
+
+let fullName = person.fullName.bind(member);
+fullName() // Hege Nilsen
+
+
+const person1 = {
+  fullName: function (city, country) {
+    return this.firstName + " " + this.lastName + " " + city + " " + country
+  }
+}
+
+const person2 = {
+  firstName: "John",
+  lastName: "Doe"
+}
+
+const result = person1.fullName.apply(person2, ["Oslo", "Norway"])
+console.log(result) // John Doe Oslo Norway
+```
+
+## Arrow function
+
+- Arrow function doesn't allow `this` and it will return window object.
+
+## Class
+
+```javascript
+class Car {
+  constructor(name, year) {
+    this.name = name;
+    this.year = year;
+  }
+
+  // method
+  age(x) {
+    
+    return x - this.year;
+  }
+}
+
+const myCar1 = new Car("Ford", 2014);
+const myCar2 = new Car("Audi", 2019);
+const date = new Date();
+myCar2.age(date.getFullYear()) // 5
+```
+
+- `constructor` have exact same name.
+- It's executed automatically when new object is created.
+- It's used to initialized object properties.
+- If it's not defined then javascript creates empty constructor method.
+
+## Modules
+
+- Allow to break code in separate files.
+- Modules are imported from external files using `import` statement.
+- Named export `export const name = "John";`
+- All export at once `export { name, age }`
+- import `import { name, age } from "./message.js";`
+- Modules only works with http(s) protocol not with web-based (file://).
+
+## JSON
+
+- JavaScript uses `JSON.parse()` to convert json into javascript object.
+
+## Debugging
+
+- JS code could have many errors like syntax error, logical error etc.
+- All browsers have built-in javascript debugger.
+- Methods to debug code:
+  1. using `console`
+  2. Using breakpoint through debugger window.
+  3. Using `debugger` keyword.
+
+## Best Practice
+
+- Avoid global variables.
+- Always use local variables(variables defined inside function scope).
+- Declare variables at top.
+- Initialize variable when declaring it.
+- Declare `object` or `array` with `const`
+- Avoid using `new` keyword for initializing values.
+- use === instead of ==
+- use parameter default `function (a=1,b=1){}`
+- Avoid number, string and boolean as object `new String()`
+- Avoid using `eval`
+- Since javascript has difficulties adding precise floats use any value with it to prevent it.
+
+```javascript
+let x = 0.1;
+let y = 0.2;
+let z = x + y // 0.30000000000000004
+
+z = (x * 10 + y * 10) / 10; // 0.3
+```
+
+## Improve Javascript performance
+
+- Reduce dom access
+- Reduce dom size
+- Reduce activity in loop
+
+```javascript
+// bad
+for (let i = 0; i < arr.length; i++)
+
+// good
+let len = arr.length
+for (let i = 0; i < len; i++)
+```
+
+- Avoid unnecessary variables.
+
+```javascript
+// bad
+let fullName = firstName + " " + lastName;
+document.getElementById("demo").innerHTML = fullName;
+
+// good
+document.getElementById("demo").innerHTML = firstName + " " + lastName;
+```
+
+- Avoid using `with`
